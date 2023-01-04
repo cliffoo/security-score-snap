@@ -4,14 +4,14 @@ import { MetamaskActions, MetaMaskContext } from '../hooks';
 import {
   connectSnap,
   getSnap,
-  sendHello,
+  sendTransaction,
   shouldDisplayReconnectButton,
 } from '../utils';
 import {
   ConnectButton,
   InstallFlaskButton,
   ReconnectButton,
-  SendHelloButton,
+  SendTransactionButton,
   Card,
 } from '../components';
 
@@ -117,9 +117,9 @@ const Index = () => {
     }
   };
 
-  const handleSendHelloClick = async () => {
+  const handleSendTransaction = async () => {
     try {
-      await sendHello();
+      await sendTransaction();
     } catch (e) {
       console.error(e);
       dispatch({ type: MetamaskActions.SetError, payload: e });
@@ -185,22 +185,17 @@ const Index = () => {
         )}
         <Card
           content={{
-            title: 'Send Hello message',
+            title: 'Send a transaction',
             description:
-              'Display a custom message within a confirmation screen in MetaMask.',
+              "The transaction's `to` field is scored through things such as on-chain analysis, text similarity, verification status.",
             button: (
-              <SendHelloButton
-                onClick={handleSendHelloClick}
+              <SendTransactionButton
+                onClick={handleSendTransaction}
                 disabled={!state.installedSnap}
               />
             ),
           }}
           disabled={!state.installedSnap}
-          fullWidth={
-            state.isFlask &&
-            Boolean(state.installedSnap) &&
-            !shouldDisplayReconnectButton(state.installedSnap)
-          }
         />
         <Notice>
           <p>

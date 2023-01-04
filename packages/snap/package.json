@@ -26,6 +26,9 @@
     "serve": "mm-snap serve",
     "start": "mm-snap watch"
   },
+  "dependencies": {
+    "@metamask/snaps-ui": "^0.27.1"
+  },
   "devDependencies": {
     "@lavamoat/allow-scripts": "^2.0.3",
     "@metamask/auto-changelog": "^2.6.0",
